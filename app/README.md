@@ -58,7 +58,7 @@ cd app && npm install && npm run setup
 ```
 
 **That's it!** These scripts will:
-1. Check for required dependencies (Node.js, Python, Poetry)
+1. Check for required dependencies (Node.js, Python, uv)
 2. Install all dependencies automatically
 3. Start both frontend and backend services
 4. **Automatically open your web browser** to the application
@@ -66,7 +66,7 @@ cd app && npm install && npm run setup
 **Requirements:**
 - [Node.js](https://nodejs.org/) (includes npm)
 - [Python 3](https://python.org/)
-- [Poetry](https://python-poetry.org/)
+- [uv](https://docs.astral.sh/uv/)
 
 **After running, you can access:**
 - Frontend (Web Interface): http://localhost:5173
@@ -82,7 +82,7 @@ If you prefer to set up each component manually or need more control:
 ### Prerequisites
 
 - Node.js and npm for the frontend
-- Python 3.8+ and Poetry for the backend
+- Python 3.8+ and uv for the backend
 
 ### Installation
 
@@ -110,24 +110,21 @@ GROQ_API_KEY=your-groq-api-key
 FINANCIAL_DATASETS_API_KEY=your-financial-datasets-api-key
 ```
 
-4. Install Poetry (if not already installed):
+4. Install uv (if not already installed):
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 5. Install root project dependencies:
 ```bash
 # From the root directory
-poetry install
+uv sync
 ```
 
 6. Install backend app dependencies:
 ```bash
-# Navigate to the backend directory
-cd app/backend
-pip install -r requirements.txt  # If there's a requirements.txt file
-# OR
-poetry install  # If there's a pyproject.toml in the backend directory
+# Dependencies are already installed with uv sync from the root directory
+# No additional backend-specific installation needed
 ```
 
 7. Install frontend app dependencies:
@@ -142,7 +139,7 @@ npm install  # or pnpm install or yarn install
 ```bash
 # In one terminal, from the backend directory
 cd app/backend
-poetry run uvicorn main:app --reload
+uv run uvicorn main:app --reload
 ```
 
 2. Start the frontend application:
@@ -172,4 +169,4 @@ This project is for **educational and research purposes only**.
 - Creator assumes no liability for financial losses
 - Consult a financial advisor for investment decisions
 
-By using this software, you agree to use it solely for learning purposes. 
+By using this software, you agree to use it solely for learning purposes.
